@@ -286,7 +286,7 @@ export function getSimulatorsData({
 					</p>
 					<p>
 						<Emoji emoji="👉" />{' '}
-						<RuleLink dottedName="dirigeant . auto-entrepreneur . impôt . revenu abattu">
+						<RuleLink dottedName="dirigeant . auto-entrepreneur . impôt . revenu imposable">
 							Voir le détail du calcul du revenu abattu pour un
 							auto-entrepreneur
 						</RuleLink>
@@ -822,7 +822,7 @@ const configFromPLMetier = (metier: string): SimulationConfig => ({
 	...professionLibéraleConfig,
 	situation: {
 		...professionLibéraleConfig.situation,
-		"entreprise . catégorie d'activité . libérale règlementée": 'oui',
+		'entreprise . activité . libérale règlementée': 'oui',
 		'dirigeant . indépendant . PL . métier': `'${metier}'`,
 	},
 })
