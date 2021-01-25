@@ -1,7 +1,6 @@
 import RuleLink from 'Components/RuleLink'
 import SimulateurWarning from 'Components/SimulateurWarning'
 import Simulation from 'Components/Simulation'
-import AutoEntrepreneurExplanation from 'Components/simulationExplanation/AutoEntrepreneurExplanation'
 import SalaryExplanation from 'Components/simulationExplanation/SalaryExplanation'
 import Emoji from 'Components/utils/Emoji'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
@@ -13,6 +12,7 @@ import { RessourceAutoEntrepreneur } from '../Créer/CreationChecklist'
 import AideDéclarationIndépendant from '../Gérer/AideDéclarationIndépendant'
 import FormulaireMobilitéIndépendant from '../Gérer/DemandeMobilite'
 import ArtisteAuteur from './ArtisteAuteur'
+import AutoEntrepreneur from './AutoEntrepreneur'
 import ChômagePartielComponent from './ChômagePartiel'
 import autoEntrepreneurConfig from './configs/auto-entrepreneur.yaml'
 import chômageParielConfig from './configs/chômage-partiel.yaml'
@@ -27,12 +27,12 @@ import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
-import PAMCHome from './PAMCHome'
 import IndépendantSimulation, {
 	IndépendantPLSimulation,
 } from './IndépendantSimulation'
-import SalariéSimulation from './SalariéSimulation'
 import ISSimulation from './ISSimulation'
+import PAMCHome from './PAMCHome'
+import SalariéSimulation from './SalariéSimulation'
 import SchemeComparaisonPage from './SchemeComparaison'
 import ÉconomieCollaborative from './ÉconomieCollaborative'
 
@@ -211,14 +211,7 @@ export function getSimulatorsData({
 					'Auto-entrepreneurs : simulateur de revenus'
 				),
 			},
-			component: function AutoEntrepreneurSimulation() {
-				return (
-					<>
-						<SimulateurWarning simulateur="auto-entrepreneur" />
-						<Simulation explanations={<AutoEntrepreneurExplanation />} />
-					</>
-				)
-			},
+			component: AutoEntrepreneur,
 			path: sitePaths.simulateurs['auto-entrepreneur'],
 			shortName: t(
 				'pages.simulateurs.auto-entrepreneur.shortname',
