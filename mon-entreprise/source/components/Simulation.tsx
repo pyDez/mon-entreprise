@@ -5,20 +5,21 @@ import SeeAnswersButton from 'Components/conversation/SeeAnswersButton'
 import PageFeedback from 'Components/Feedback/PageFeedback'
 import Notifications from 'Components/Notifications'
 import SearchButton from 'Components/SearchButton'
+import ShareSimulationBanner from 'Components/ShareSimulationBanner'
 import TargetSelection from 'Components/TargetSelection'
 import * as Animate from 'Components/ui/animate'
 import Progress from 'Components/ui/Progress'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
+import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { firstStepCompletedSelector } from 'Selectors/simulationSelectors'
-import useSearchParamsSimulationSharing from 'Components/utils/useSearchParamsSimulationSharing'
-import ShareSimulationBanner from 'Components/ShareSimulationBanner'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
 	results?: React.ReactNode
+	children?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
 	showPeriodSwitch?: boolean
 }
@@ -26,15 +27,18 @@ type SimulationProps = {
 export default function Simulation({
 	explanations,
 	results,
+	children,
 	customEndMessages,
 	showPeriodSwitch,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const getShareSearchParams = useSearchParamsSimulationSharing()
-
+	const simulationBloc = children ?? (
+		<TargetSelection showPeriodSwitch={showPeriodSwitch} />
+	)
 	return (
 		<>
-			<TargetSelection showPeriodSwitch={showPeriodSwitch} />
+			{simulationBloc}
 			<SearchButton invisibleButton />
 			{firstStepCompleted && (
 				<Animate.fromTop>
