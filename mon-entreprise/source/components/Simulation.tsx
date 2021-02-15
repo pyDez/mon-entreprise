@@ -81,7 +81,7 @@ function Questions({
 				{progress < 1 ? (
 					<small css="padding: 0.4rem 0">
 						<Trans i18nKey="simulateurs.précision.défaut">
-							Affinez la simulation en répondant aux questions :
+							Affinez votre simulation en répondant aux questions :
 						</Trans>
 					</small>
 				) : (
