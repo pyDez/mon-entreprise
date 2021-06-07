@@ -166,27 +166,29 @@ jobs:
         site: ['fr', 'en', 'publicodes']
         browser: [chrome]
         viewport: [default]
+        container: [1, 2]
         include:
           - site: fr
             integrationFolder: mon-entreprise
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
-            container: 1
           - site: fr
             integrationFolder: mon-entreprise
             baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
             language: fr
-            container: 2
           - site: en
             integrationFolder: mon-entreprise
             baseUrl: ${{ needs.deploy-context.outputs.en_url }}
             language: en
-            container: 1
           - site: publicodes
             baseUrl: ${{ needs.deploy-context.outputs.publicodes_url }}
             integrationFolder: publi.codes
             language: fr
-            container: 1
+        # exclude:
+        #   - site: en
+        #     container: 2
+        #   - site: publicodes
+        #     container: 2
 
     steps:
       - name: Checkout
@@ -208,7 +210,7 @@ jobs:
           install: false
           working-directory: mon-entreprise
           record: true
-          # tag: ${{ matrix.site }},${{ matrix.browser }},viewport_${{ matrix.viewport }},${{ needs.deploy-context.outputs.env-name }}_deploy
+          tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
           config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}
           env: language=${{ matrix.language }}
           browser: ${{ matrix.browser}}
