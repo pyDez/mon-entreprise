@@ -234,8 +234,8 @@ jobs:
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     runs-on: ubuntu-16.04
     # We need to specify always() https://github.com/actions/runner/issues/491
-    if: always() && needs.deploy-production.result == 'success'
-    needs: [deploy-context, deploy-production]
+    if: always() && needs.deploy-prod.result == 'success'
+    needs: [deploy-context, deploy-prod]
 
     strategy:
       fail-fast: false
