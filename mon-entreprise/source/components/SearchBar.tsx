@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { DottedName } from 'modele-social'
-import Worker from 'worker-loader!./SearchBar.worker.js' // TODO: importing a worker this way doesn't work with babel transpilation https://github.com/betagouv/mon-entreprise/issues/1554
+import Worker from './SearchBar.worker.js'
 import RuleLink from './RuleLink'
 import './SearchBar.css'
 import { useEngine } from './utils/EngineContext'
