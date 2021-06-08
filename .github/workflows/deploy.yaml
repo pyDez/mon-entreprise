@@ -151,7 +151,7 @@ jobs:
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
             - publicodes : ${{ needs.deploy-context.outputs.publicodes_url }}
 
-  end-to-end-test-preview:
+  e2e-test-preview:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -219,16 +219,16 @@ jobs:
           working-directory: mon-entreprise
           record: true
           tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
-          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360'}}
+          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
           env: language=${{ matrix.language }}
-          browser: ${{ matrix.browser}}
+          browser: ${{ matrix.browser }}
           headless: true
           parallel: true
           group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
         env:
           COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
 
-  end-to-end-test-production:
+  e2e-test-production:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -296,7 +296,7 @@ jobs:
           working-directory: mon-entreprise
           record: true
           tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
-          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360'}}
+          config: integrationFolder=cypress/integration/${{ matrix.integrationFolder }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
           env: language=${{ matrix.language }}
           browser: ${{ matrix.browser}}
           headless: true
