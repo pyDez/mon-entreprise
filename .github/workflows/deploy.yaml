@@ -164,7 +164,7 @@ jobs:
       fail-fast: false
       matrix:
         site: ['fr', 'en', 'publicodes']
-        browser: [chrome, firefox]
+        browser: [chrome]
         viewport: [default, small]
         container: [1, 2, 3]
         include:
@@ -193,8 +193,6 @@ jobs:
             container: 3
           - site: publicodes
             container: 3
-          - site: en
-            browser: firefox
           - site: en
             viewport: small
 
